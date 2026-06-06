@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Proposal ❤️</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+    body{
+        margin:0;
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-family:Arial;
+        background:linear-gradient(135deg,#ff758c,#ff7eb3);
+        overflow:hidden;
+    }
+
+    .box{
+        background:white;
+        padding:40px;
+        border-radius:20px;
+        text-align:center;
+        width:350px;
+        position:relative;
+        box-shadow:0 0 20px rgba(0,0,0,0.3);
+    }
+
+    button{
+        padding:12px 25px;
+        font-size:18px;
+        border:none;
+        border-radius:10px;
+        cursor:pointer;
+        margin:10px;
+    }
+
+    #yesBtn{
+        background:green;
+        color:white;
+    }
+
+    #noBtn{
+        background:red;
+        color:white;
+        position:absolute;
+    }
+
+    #msg{
+        display:none;
+        margin-top:20px;
+        font-size:22px;
+        color:green;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>Hey ❤️</h1>
+    <p>Will you be mine forever?</p>
+
+    <button id="yesBtn" onclick="sendYes()">YES 💖</button>
+    <button id="noBtn">NO 😅</button>
+
+    <div id="msg">💖 Message Sent! I Love You 😍</div>
+</div>
+
+<script>
+
+// EmailJS init
+(function(){
+    emailjs.init("jnZOYC4hOASfBwvL8");
+})();
+
+// NO button escape
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random()*250 + "px";
+    noBtn.style.top = Math.random()*250 + "px";
+});
+
+// YES click → send email
+function sendYes(){
+
+    emailjs.send(
+        "service_975cx7s",
+        "template_5sde7dg",
+        {
+            message: "💖 Someone said YES to your proposal!"
+        }
+    )
+    .then(() => {
+        document.getElementById("msg").style.display = "block";
+    })
+    .catch((err) => {
+        alert("❌ Failed to send message");
+        console.log(err);
+    });
+
+}
+
+</script>
+
+</body>
+</html>
